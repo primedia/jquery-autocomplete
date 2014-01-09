@@ -1,10 +1,10 @@
 {
   "name": "jquery-autocomplete",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "jquery-autocomplete plugin",
   "homepage": "https://github.com/primedia/jquery-autocomplete",
   "author": {
-    "name": "Primedia"
+    "name": "Dylan Verheul"
   },
   "repositories": [
     {
