@@ -826,8 +826,8 @@ define(['jquery'],function($){
         var $li = $('<li/>');
         $li.html(this.showResult(result.value));
         $li.data({value: result.value, data: result.data})
-            .click(function() {
-                self.selectItem($li);
+            .click(function(evt) {
+                self.selectItem($li, evt.type);
             })
             .mousedown(self.disableFinishOnBlur)
             .mouseup(self.enableFinishOnBlur)
@@ -971,7 +971,8 @@ define(['jquery'],function($){
         }
     };
 
-    $.Autocompleter.prototype.selectItem = function($li) {
+    $.Autocompleter.prototype.selectItem = function($li, event_type) {
+        if(typeof(event_type) === 'undefined') event_type = null;
         var value = $li.data('value');
         var data = $li.data('data');
         var displayValue = this.displayValue(value, data);
@@ -997,7 +998,7 @@ define(['jquery'],function($){
         }
         this.setValue(displayValue);
         this.setCaret(d.start + displayValue.length + extraCaretPos);
-        this.callHook('onItemSelect', { value: value, data: data });
+        this.callHook('onItemSelect', { value: value, data: data, event_type: event_type });
         this.deactivate(true);
         elem.focus();
     };
